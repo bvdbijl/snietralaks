@@ -1,10 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Simple Website</title>
-    <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snietralaks</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            font-size: x-small;
+            color:rgb(34, 34, 34);
+            text-align: center;
+            margin: 20px;
+            line-height: 1.6;
+            background-image: url('bg.jpg');
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center 400px; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-color: #d5d4af;
+        }
+        .question {
+            display: none; /* Hide all questions initially */
+        }
+        .question.active {
+            display: block; /* Show the active question */
+        }
+        .question label {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+
+        }
+        .question label input {
+            margin-right: 10px; /* Add some space between the radio button and the label text */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #ff6347; /* Red-ish */
+            border-right: 4px solid #ffd700; /* Yellow */
+            border-radius: 50%;
+            width: 30px; /* Quarter of the original 120px */
+            height: 30px; /* Quarter of the original 120px */
+            animation: spin 2s linear infinite;
+            margin: 20px auto; /* Center the spinner */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h1 {
+            background: linear-gradient(to right, red, rgb(255, 179, 0));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Hello, GitHub Pages!</h1>
+    <h1>Snietralaks 2024 <span style="font-size: x-small;">(in 2025)</span></h1>
+    <div id="intro">
+        <p>
+            Snietralaks hield het simpel dit jaar<br>
+            Een lang gedicht vond hij wat te zwaar<br>
+            Beantwoord de vragen ten goeder trouw<br>
+            Dan volgt er een gedicht speciaal voor jou
+        </p>
+        <button id="begin-button">Begin</button>
+    </div>
+    <form id="quiz-form" style="display: none;">
+        <div class="question active">
+            <h3>Wie is je favoriete kind?</h3>
+            <label><input type="radio" name="q1" value="Tinus" required> Tinus</label>
+            <label><input type="radio" name="q1" value="Frenkie"> Frenkie</label>
+            <label><input type="radio" name="q1" value="John"> John</label>
+            <label><input type="radio" name="q1" value="Ik heb inderdaad een favoriet, maar durf het niet te zeggen"> Ik heb inderdaad een favoriet, maar durf het niet te zeggen</label>
+            <label><input type="radio" name="q1" value="Ik heb geen favoriet, heus waar, echt niet..."> Ik heb geen favoriet, heus waar, echt niet...</label>
+        </div>
+
+        <div class="question">
+            <h3>Als je van beren leren kan, van slimme beren leren kan, is dat iets wat je echt proberen moet?</h3>
+            <label><input type="radio" name="q2" value="Wikipedia" required> Wikipedia</label>
+            <label><input type="radio" name="q2" value="Wikipedinee"> Wikipedinee</label>
+            <label><input type="radio" name="q2" value="Plagiator"> Plagiator</label>
+        </div>
+
+        <div class="question">
+            <h3>Wat heb je liever?</h3>
+            <label><input type="radio" name="q3" value="Elke keer dat je een slok van iets drinkt mors je een klein beetje over jezelf" required> Elke keer dat je een slok van iets drinkt mors je een klein beetje over jezelf</label>
+            <label><input type="radio" name="q3" value="Zulke gladde handen dat alles vaak uit je handen glijdt"> Zulke gladde handen dat alles vaak uit je handen glijdt</label>
+        </div>
+
+        <div class="question">
+            <h3>Hoe verbolgen ben je over het feit dat jij niet gecast was voor je eigen serie en Rein wel?</h3>
+            <label><input type="radio" name="q4" value="Zeer verbolgen" required> Zeer verbolgen</label>
+            <label><input type="radio" name="q4" value="Matig verbolgen"> Matig verbolgen</label>
+            <label><input type="radio" name="q4" value="Niet verbolgen"> Niet verbolgen</label>
+            <label><input type="radio" name="q4" value="Totaal niet verbolgen"> Totaal niet verbolgen</label>
+            <label><input type="radio" name="q4" value="Ik weet niet wat verbolgen betekent"> Ik weet niet wat verbolgen betekent</label>
+        </div>
+
+    </form>
+
+    <p id="response"></p>
+    <div id="loading" style="display: none;">
+        <div>Eventjes geduld Rutger, we zijn nog wat olie aan het boren om de benodigde energie op te wekken voor dit verzoek. En ja, dat kan best een halve minuut duren ofzo.</div>
+        <div id="spinner" class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

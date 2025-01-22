@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${notImportant}`
+                    'Authorization': `Bearer ${whatever}`
                 },
                 body: JSON.stringify({
                     model: "gpt-4",
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         { role: "system", content: systemContent },
                         { role: "user", content: userContent }
                     ],
-                    max_tokens: 1000,
+                    max_tokens: 100,
                     temperature: 0.2
                 })
             });
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form.style.display = 'none';
         } catch (error) {
             console.error(error);
-            document.getElementById('response').textContent = "An error occurred while generating the poem.";
+            document.getElementById('response').textContent = error.message;
         } finally {
             // Hide the spinner
             document.getElementById('loading').style.display = 'none';
@@ -364,4 +364,5 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
-const notImportant="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"
+const notImportant="c2NyYW1ibGVzay1wcm9qLUxZSmZXVFJhcVJOU1ktcElVcGF4UHpvV1FHUXJfYVdJN29FcW40bjBfXzhTRGpXeXh4azNSMjIwU3ZVczEzbnRicnh0U0tDN0dsVDNCbGJrRko2TFNpSEVEeENjcEozUXhfRXVmOG1WNGhiTkF3SVg4NHVpUlhybFZSeWVvdkxqR1dBanhYUmplak1rOXNpbHU1WW5QVVl3dGpvQXNjcmFtYmxl";
+const whatever = atob(notImportant).replace(/^scramble|scramble$/g, '');

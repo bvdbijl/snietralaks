@@ -29,7 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
     questions.forEach((question, index) => {
         const radios = question.querySelectorAll('input[type="radio"]');
         radios.forEach(radio => {
-            radio.addEventListener('change', showNextQuestion);
+            radio.addEventListener('change', () => {
+                // Check if the button already exists
+                if (!question.querySelector('.next-button')) {
+                    const nextButton = document.createElement('button');
+                    nextButton.textContent = 'Ga door';
+                    nextButton.type = 'button';
+                    nextButton.classList.add('next-button');
+                    nextButton.addEventListener('click', showNextQuestion);
+                    question.appendChild(nextButton);
+                }
+            });
         });
     });
 
@@ -318,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         { role: "system", content: systemContent },
                         { role: "user", content: userContent }
                     ],
-                    max_tokens: 100,
+                    max_tokens: 1000,
                     temperature: 0.2
                 })
             });
